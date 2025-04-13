@@ -1,11 +1,9 @@
-import Image from "next/image"
-
 interface ChatboxListItemProps {
   icon: React.ReactNode
   label: string
 }
 
-const ChatboxListItem: React.FC<ChatboxListItemProps> = ({ icon, label }) => {
+const ChatboxListItem: React.FC<ChatboxListItemProps> = ({ label }) => {
   return (
     <div className="flex items-center border-b space-x-4 px-4 py-3 rounded-md cursor-pointer hover:bg-[#2a2b2e] transition-colors">
       {/* <img src={icon} alt="logo" width={52} height={52} className="rounded-full" /> */}

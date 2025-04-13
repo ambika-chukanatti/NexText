@@ -25,7 +25,7 @@ const ViewProfile: React.FC<ViewProfileProps> = ({ onClose }) => {
             <div className="px-6">
                 <div>
                     <h3 className="font-semibold text-lg">Bio</h3>
-                    <p>Can't talk, loopchat only</p>
+                    <p>Can&apos;t talk, loopchat only</p>
                 </div>
             </div>
                 <hr className="border-gray-300 my-2" />

@@ -3,26 +3,16 @@
 import { EllipsisVertical, Search, Phone } from "lucide-react"
 import { useState } from "react"
 import ChatDropDown from "./ChatDropDown"
-import ViewProfile from "./ViewProfile"
 
 const ChatHeader = () => {
   const [showDropdown, setShowDropdown] = useState(false)
-  const [modalType, setModalType] = useState(false)
 
   const toggleDropdown = () => {
     setShowDropdown((prev) => !prev)
   }
 
   const openModal = () => {
-    setModalType(true)
     setShowDropdown(false)
-  }
-
-  const closeModal = () => {
-    setModalType(false)
-  }
-
-  const handleCreateGroup = () => {
   }
 
   return (

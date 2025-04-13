@@ -1,15 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { AlignLeft } from "lucide-react"
-import Link from "next/link"
 import Image from "next/image"
 import CreateGroupModal from "./CreateGroupModal"
 import SettingsModal from "./SettingsModal"

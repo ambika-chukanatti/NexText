@@ -59,7 +59,7 @@ const SignInPage: React.FC = () => {
           </button>
         </form>
         <p className="mt-6 text-sm text-center text-white">
-          Don't have an account? <a href="sign-up" className="text-white underline">Sign up</a>
+          <span>Don&apos;t have an account?</span> <a href="sign-up" className="text-white underline">Sign up</a>
         </p>
       </div>
     </div>
