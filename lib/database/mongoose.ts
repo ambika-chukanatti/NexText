@@ -7,31 +7,26 @@ interface MongooseConnection {
   promise: Promise<Mongoose> | null;
 }
 
-declare global {
-  var mongoose: MongooseConnection | undefined;
+let cached: MongooseConnection = (global as any).mongoose
+
+if(!cached) {
+  cached = (global as any).mongoose = { 
+    conn: null, promise: null 
+  }
 }
-
-let cached: MongooseConnection;
-
-if (!global.mongoose) {
-  global.mongoose = { conn: null, promise: null };
-}
-
-cached = global.mongoose;
 
 export const connectToDatabase = async () => {
-  if (cached.conn) return cached.conn;
+  if(cached.conn) return cached.conn;
 
-  if (!MONGODB_URL) throw new Error('Missing MONGODB_URL');
+  if(!MONGODB_URL) throw new Error('Missing MONGODB_URL');
 
-  cached.promise =
-    cached.promise ||
-    mongoose.connect(MONGODB_URL, {
-      dbName: 'nexText',
-      bufferCommands: false,
-    });
+  cached.promise = 
+    cached.promise || 
+    mongoose.connect(MONGODB_URL, { 
+      dbName: 'nextext', bufferCommands: false 
+    })
 
   cached.conn = await cached.promise;
 
   return cached.conn;
-};
+}
