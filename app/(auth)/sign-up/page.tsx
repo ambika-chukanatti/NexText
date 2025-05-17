@@ -1,21 +1,38 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { createUser } from "@/lib/actions/user.actions"
+import toast from "react-hot-toast"
 
-const SignUpPage: React.FC = () => {
+const SignUpPage = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Add sign-up logic and validation
-    console.log({ name, email, password })
+
+    try {
+      const res = await createUser({
+        username: name,
+        email,
+        password
+      })
+
+      if (res?.success){
+        toast.success("Signup successful!")
+        router.push("/") 
+      }
+    } catch (err) {
+      toast.error("Signup failed. Try again.")
+    }
   }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black">
-      <div className="bg-black p-8 rounded-2xl shadow-md w-full lg:w-2/5 border border-white">
+      <div className="bg-black p-8 rounded-2xl shadow-md w-11/12 md:w-3/4 lg:w-2/5 border border-white">
         <h2 className="text-2xl font-bold mb-6 text-center text-white">Create an Account</h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
@@ -51,15 +68,12 @@ const SignUpPage: React.FC = () => {
               placeholder="••••••••"
             />
           </div>
-          <button
-            type="submit"
-            className="w-full bg-white text-black py-2 rounded-lg hover:bg-opacity-80 transition"
-          >
+          <button type="submit" className="w-full bg-white text-black py-2 rounded-lg hover:bg-opacity-80 transition cursor-pointer">
             Sign Up
           </button>
         </form>
         <p className="mt-6 text-sm text-center text-white">
-          Already have an account? <a href="sign-in" className="text-white underline">Sign in</a>
+          Already have an account? <a href="/sign-in" className="underline">Sign in</a>
         </p>
       </div>
     </div>

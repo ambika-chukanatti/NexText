@@ -17,7 +17,7 @@ const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ onClose, onCreate }
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
+    <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
       <div className="bg-[#1F1F1F] text-white p-6 rounded-xl w-[350px] relative shadow-lg">
         <button onClick={onClose} className="absolute top-3 right-3 text-gray-400 hover:text-white">
           <X />

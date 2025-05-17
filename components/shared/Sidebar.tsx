@@ -3,12 +3,19 @@
 import ToggleSidebar from "./ToggleSidebar"
 import Search from "./Search"
 import ChatboxListItem from "./ChatboxListItem"
+import { User } from "@/constants"
 
-const Sidebar = () => {
+type SidebarProps = {
+  user: User
+}
+
+const Sidebar = ({ user }: SidebarProps) => {
   return (
     <div className="w-full p-4">
         <section className="w-full flex flex-row gap-6 items-center">
-            <ToggleSidebar/>
+            <ToggleSidebar
+                user={user}
+            />
             <Search/>
         </section>
         <section className="mt-6 flex flex-col">
@@ -18,7 +25,7 @@ const Sidebar = () => {
             />
             <ChatboxListItem
                 icon="/globe.svg"
-                label="Grey"
+                label="Jade"
             />
         </section>
     </div>

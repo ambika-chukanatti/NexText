@@ -1,20 +1,35 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { authenticateUser } from "@/lib/actions/user.actions"
+import toast from "react-hot-toast"
 
-const SignInPage: React.FC = () => {
+const SignInPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const router = useRouter()
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log({ email, password, rememberMe })
+
+    try {
+      const res = await authenticateUser(email, password);
+
+      if (res?.success){
+        toast.success("Signin successful!")
+        router.push("/") 
+      }
+    } catch (err) {
+      toast.error("Signin failed. Try again.")
+    }
   }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black">
-      <div className="bg-black p-8 rounded-2xl shadow-md w-full lg:w-2/5 border border-white">
+      <div className="bg-black p-8 rounded-2xl shadow-md w-full w-11/12 md:w-3/4 lg:w-2/5 border border-white">
         <h2 className="text-2xl font-bold mb-6 text-center text-white">Sign In</h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
@@ -53,7 +68,7 @@ const SignInPage: React.FC = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-white text-black py-2 rounded-lg hover:bg-opacity-80 transition"
+            className="w-full bg-white text-black py-2 rounded-lg hover:bg-opacity-80 transition cursor-pointer"
           >
             Sign In
           </button>

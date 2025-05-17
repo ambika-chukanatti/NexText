@@ -4,7 +4,7 @@ import { EllipsisVertical, Search, Phone } from "lucide-react"
 import { useState } from "react"
 import ChatDropDown from "./ChatDropDown"
 
-const ChatHeader = () => {
+const ChatHeader = ({label}: {label:string}) => {
   const [showDropdown, setShowDropdown] = useState(false)
 
   const toggleDropdown = () => {
@@ -18,7 +18,7 @@ const ChatHeader = () => {
   return (
     <div className='w-full flex flex-row items-center justify-between border-2 py-2 px-6 relative'>
       <div className='flex flex-col'>
-        <h3 className='font-semibold text-lg'>Grey</h3>
+        <h3 className='font-semibold text-lg'>{label}</h3>
         <p className='text-sm'>last seen recently</p>
       </div>
 
